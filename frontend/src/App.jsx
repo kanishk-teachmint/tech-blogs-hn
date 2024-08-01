@@ -10,6 +10,7 @@ const App = () => {
     const fetchPosts = async () => {
       try {
         // Replace this URL with the actual endpoint of the API providing the dev blogs
+        setPosts([]);
         const response = await axios.get('http://localhost:3000/api/articles');
         setPosts(response.data);
         setLoading(false);
@@ -30,7 +31,7 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <h1>Hacker News Style Dev Blogs</h1>
+        <a href="https://www.google.com"><h1>System Design Blogs</h1></a>
       </header>
       <main>
         {loading ? (
@@ -52,7 +53,7 @@ const App = () => {
         )}
       </main>
       <footer>
-        <a href="https://news.ycombinator.com/">Hacker News</a>
+        <a href="">System Design Blogs</a>
       </footer>
     </div>
   );

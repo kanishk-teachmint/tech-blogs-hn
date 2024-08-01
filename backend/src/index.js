@@ -10,16 +10,51 @@ app.use(cors());
 const feedURLs = [
   "https://netflixtechblog.com/feed",
   "https://slack.engineering/feed",
-  "https://www.uber.com/en-IN/blog/engineering/rss/", 
   "https://blog.cloudflare.com/tag/engineering/rss",     
-  "https://aws.amazon.com/blogs/architecture/feed/"
+  "https://aws.amazon.com/blogs/architecture/feed/",
+  "https://aws.amazon.com/blogs/architecture/feed/",
+  "https://aws.amazon.com/blogs/apn/feed/",
+  "https://aws.amazon.com/blogs/awsmarketplace/feed/",
+  "https://aws.amazon.com/blogs/aws/feed/",
+  "https://aws.amazon.com/blogs/big-data/feed/",
+  "https://aws.amazon.com/blogs/business-productivity/feed/",
+  "https://aws.amazon.com/blogs/compute/feed/",
+  "https://aws.amazon.com/blogs/contact-center/feed/",
+  "https://aws.amazon.com/blogs/containers/feed/",
+  "https://aws.amazon.com/blogs/database/feed/",
+  "https://aws.amazon.com/blogs/desktop-and-application-streaming/feed/",
+  "https://aws.amazon.com/blogs/developer/feed/",
+  "https://aws.amazon.com/blogs/devops/feed/",
+  "https://aws.amazon.com/blogs/enterprise-strategy/feed/",
+  "https://aws.amazon.com/blogs/mobile/feed/",
+  "https://aws.amazon.com/blogs/gametech/feed/",
+  "https://aws.amazon.com/blogs/hpc/feed/",
+  "https://aws.amazon.com/blogs/infrastructure-and-automation/feed/",
+  "https://aws.amazon.com/blogs/industries/feed/",
+  "https://aws.amazon.com/blogs/iot/feed/",
+  "https://aws.amazon.com/blogs/machine-learning/feed/",
+  "https://aws.amazon.com/blogs/mt/feed/",
+  "https://aws.amazon.com/blogs/media/feed/",
+  "https://aws.amazon.com/blogs/messaging-and-targeting/feed/",
+  "https://aws.amazon.com/blogs/networking-and-content-delivery/feed/",
+  "https://aws.amazon.com/blogs/opensource/feed/",
+  "https://aws.amazon.com/blogs/publicsector/feed/",
+  "https://aws.amazon.com/blogs/quantum-computing/feed/",
+  "https://aws.amazon.com/blogs/robotics/feed/",
+  "https://aws.amazon.com/blogs/awsforsap/feed/",
+  "https://aws.amazon.com/blogs/security/feed/",
+  "https://aws.amazon.com/blogs/startups/feed/",
+  "https://aws.amazon.com/blogs/storage/feed/",
+  "https://aws.amazon.com/blogs/training-and-certification/feed/",
+  "https://aws.amazon.com/blogs/modernizing-with-aws/feed/",
 ];
 
-const articles = [];
+let articles = [];
 
 async function fetchArticles() {
   try {
     // Shuffle the feed URLs to randomize selection
+    articles=[];
     shuffleArray(feedURLs);
 
     // Fetch articles from up to 20 different feeds
@@ -55,6 +90,8 @@ async function fetchArticles() {
           articles.push(article);
         } else {
           console.warn(`No items found in feed: ${feedURL}`);
+          shuffleArray(feedURLs);
+          i--;
         }
       } catch (error) {
         console.error(`Error fetching from ${feedURL}:`, error.message);
